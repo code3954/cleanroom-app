@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from keras.models import load_model  
-from PIL import Image, ImageOps  # Install pillow instead of PIL
+from PIL import Image, ImageOps 
 import numpy as np
 
 
@@ -27,14 +27,13 @@ def main():
         data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
 
-        # resizing the image to be at least 224x224 and then cropping from the center
+        # 이미지 크기를 최소 224x224로 조정한 다음 중앙에서 잘라냅니다.
         size = (224, 224)
         image = ImageOps.fit(image, size, Image.Resampling.LANCZOS)
 
-        # turn the image into a numpy array
+        # 이미지를 numpy 배열로 변환
         image_array = np.asarray(image)
 
-        # Normalize the image
         normalized_image_array = (image_array.astype(np.float32) / 127.5) - 1
 
         # Load the image into the array
